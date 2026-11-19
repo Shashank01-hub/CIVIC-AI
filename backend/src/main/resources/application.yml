@@ -1,0 +1,49 @@
+server:
+  port: 8080
+spring:
+  mail:
+    host: ${SMTP_HOST:}
+    port: ${SMTP_PORT:587}
+    username: ${SMTP_USERNAME:}
+    password: ${SMTP_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: ${SMTP_AUTH:false}
+          starttls:
+            enable: ${SMTP_STARTTLS:false}
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/smart_city?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:cityapp}
+    password: ${SPRING_DATASOURCE_PASSWORD:citypass}
+  jpa:
+    hibernate:
+      ddl-auto: ${DDL_AUTO:update}
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+app:
+  jwt-secret: ${JWT_SECRET:change-this-dev-secret-change-this-dev-secret}
+  jwt-expiration: ${JWT_EXPIRATION:86400000}
+  admin-registration-code: ${ADMIN_REGISTRATION_CODE:}
+  upload-dir: ${UPLOAD_DIR:/uploads}
+  storage-type: ${STORAGE_TYPE:local}
+  s3-bucket: ${S3_BUCKET:}
+  aws-region: ${AWS_REGION:ap-south-1}
+  gemini-key: ${GEMINI_API_KEY:}
+management:
+  health:
+    mail:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

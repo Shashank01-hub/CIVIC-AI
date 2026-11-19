@@ -1,0 +1,1 @@
+{"title":"Smart City Metrics","schemaVersion":39,"panels":[{"type":"stat","title":"Backend Health","gridPos":{"h":8,"w":24,"x":0,"y":0},"targets":[{"expr":"up{job=\"smart-city-backend\"}","refId":"A"}]}],"refresh":"15s"}
