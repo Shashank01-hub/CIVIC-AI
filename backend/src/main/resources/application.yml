@@ -12,6 +12,9 @@ spring:
           auth: ${SMTP_AUTH:false}
           starttls:
             enable: ${SMTP_STARTTLS:false}
+          connectiontimeout: 10000
+          timeout: 10000
+          writetimeout: 10000
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/smart_city?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
     username: ${SPRING_DATASOURCE_USERNAME:cityapp}
@@ -31,6 +34,7 @@ app:
   jwt-secret: ${JWT_SECRET:change-this-dev-secret-change-this-dev-secret}
   jwt-expiration: ${JWT_EXPIRATION:86400000}
   admin-registration-code: ${ADMIN_REGISTRATION_CODE:}
+  smtp-from: ${SMTP_FROM:no-reply@smartcity.local}
   upload-dir: ${UPLOAD_DIR:/uploads}
   storage-type: ${STORAGE_TYPE:local}
   s3-bucket: ${S3_BUCKET:}
