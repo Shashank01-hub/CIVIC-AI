@@ -1,6 +1,7 @@
 package com.city.system.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
@@ -11,7 +12,7 @@ public class OtpEmailSender {
   private final JavaMailSender mailSender;
   @Value("${app.smtp-from:no-reply@smartcity.local}") private String smtpFrom;
 
-  public OtpEmailSender(JavaMailSender mailSender) {
+  public OtpEmailSender(@Qualifier("otpMailSender") JavaMailSender mailSender) {
     this.mailSender=mailSender;
   }
 
