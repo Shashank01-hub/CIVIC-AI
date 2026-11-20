@@ -17,15 +17,22 @@ public class OtpEmailSender {
 
   @Async
   public void sendAsync(String email,String code){
-    try{
-      SimpleMailMessage message=new SimpleMailMessage();
-      message.setFrom(smtpFrom);
-      message.setTo(email);
-      message.setSubject("Your AI Smart City verification code");
-      message.setText("Your verification code is "+code+". It expires in 10 minutes.");
-      mailSender.send(message);
-    }catch(Exception e){
-      System.err.println("OTP email could not be delivered to "+email+": "+e.getMessage());
+    for(int attempt=1;attempt<=3;attempt++){
+      try{
+        SimpleMailMessage message=new SimpleMailMessage();
+        message.setFrom(smtpFrom);
+        message.setTo(email);
+        message.setSubject("Your AI Smart City verification code");
+        message.setText("Your verification code is "+code+". It expires in 10 minutes.");
+        mailSender.send(message);
+        System.out.println("OTP email delivered to "+email);
+        return;
+      }catch(Exception e){
+        System.err.println("OTP email attempt "+attempt+" failed for "+email+": "+e.getMessage());
+        if(attempt<3){
+          try{Thread.sleep(1000L*attempt);}catch(InterruptedException interrupted){Thread.currentThread().interrupt();return;}
+        }
+      }
     }
   }
 }

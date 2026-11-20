@@ -33,6 +33,7 @@ services:
       SMTP_FROM: ${SMTP_FROM:-no-reply@smartcity.local}
       SMTP_AUTH: ${SMTP_AUTH:-true}
       SMTP_STARTTLS: ${SMTP_STARTTLS:-true}
+      SMTP_STARTTLS_REQUIRED: ${SMTP_STARTTLS_REQUIRED:-true}
       STORAGE_TYPE: ${STORAGE_TYPE:-local}
       UPLOAD_DIR: /uploads
       AWS_REGION: ${AWS_REGION:-ap-south-1}

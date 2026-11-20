@@ -12,6 +12,7 @@ spring:
           auth: ${SMTP_AUTH:false}
           starttls:
             enable: ${SMTP_STARTTLS:false}
+            required: ${SMTP_STARTTLS_REQUIRED:false}
           connectiontimeout: 10000
           timeout: 10000
           writetimeout: 10000
